@@ -28,12 +28,18 @@ public class ContentActivity extends Activity{
 
 
         webView = (WebView) findViewById(R.id.webView);
+        webView.setScrollbarFadingEnabled(true);
 //        webView.setScrollBarStyle(0);
         WebSettings settings = webView.getSettings();
-        settings.setUseWideViewPort(true);
+        settings.setUseWideViewPort(false);
         settings.setLoadWithOverviewMode(true);
         settings.setJavaScriptEnabled(true);
         settings.setBuiltInZoomControls(false);
+        webView.setHorizontalScrollBarEnabled(false);
+        webView.setHorizontalScrollbarOverlay(false);
+        webView.setVerticalScrollBarEnabled(false);
+        webView.setVerticalScrollbarOverlay(false);
+        webView.setScrollbarFadingEnabled(false);
 //        settings.setSupportZoom(true);
         settings.setDomStorageEnabled(true);
         settings.setAllowFileAccess(true);
