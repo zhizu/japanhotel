@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fra"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:layout_gravity="bottom"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:src="@drawable/asd"
+    />
+    <TextView
+        android:id="@android:id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:layout_gravity="bottom"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:gravity="center_horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="神奈川镰仓背包客民宿推荐-龟时间"
+        android:background="?android:attr/activatedBackgroundIndicator"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"/>
+</FrameLayout>
