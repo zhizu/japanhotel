@@ -17,45 +17,30 @@
 package in.yangxu.navigationdrawer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import in.yangxu.navigationdrawer.adapter.MenuListAdapter;
-import in.yangxu.navigationdrawer.adapter.MypagerAdapter;
 import in.yangxu.navigationdrawer.modal.ListViewMenuItem;
-import in.yangxu.navigationdrawer.utils.PagerSlidingTabStrip;
+import in.yangxu.navigationdrawer.view.CatalogFragment;
+import in.yangxu.navigationdrawer.view.PagerFragment;
 
 
 public class MainActivity extends FragmentActivity {
@@ -72,6 +57,12 @@ private MenuListAdapter adapter;
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mPlanetTitles;
+
+
+    private FragmentManager fragmentManager;
+
+    private PagerFragment pagerFragment;
+    private CatalogFragment cataFragment;
 
     private int one = 1;
 
@@ -150,7 +141,11 @@ private MenuListAdapter adapter;
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         if (savedInstanceState == null) {
-            selectItem(0);
+            fragmentManager = this.getSupportFragmentManager();
+            pagerFragment = new PagerFragment(fragmentManager);
+            cataFragment = new CatalogFragment(MainActivity.this);
+            selectItem(one);
+            mDrawerList.setItemChecked(one, true);
         }
     }
 
@@ -201,9 +196,11 @@ private MenuListAdapter adapter;
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             if(position!=1 && position!=2){
-                mDrawerList.setItemChecked(one,true);
+                mDrawerList.setItemChecked(one, true);
+
             }else{
                 info.get(position).setFlag(true);
+                selectItem(position);
                 info.get(one).setFlag(false);
                 one = position;
                 mDrawerList.setItemChecked(position,true);
@@ -220,18 +217,39 @@ private MenuListAdapter adapter;
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
-        Fragment fragment = new PlanetFragment();
-        Bundle args = new Bundle();
-        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-        fragment.setArguments(args);
 
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+
+
+        if(position == 1){
+            if(fragmentManager.findFragmentByTag("one") != null) {
+                //if the fragment exists, show it.
+                fragmentManager.beginTransaction().show(fragmentManager.findFragmentByTag("one")).commit();
+            } else {
+                //if the fragment does not exist, add it to fragment manager.
+                fragmentManager.beginTransaction().add(R.id.content_frame, pagerFragment, "one").commit();
+            }
+            if(fragmentManager.findFragmentByTag("two") != null){
+                //if the other fragment is visible, hide it.
+                fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag("two")).commit();
+            }
+
+        }else if(position == 2){
+            if(fragmentManager.findFragmentByTag("two") != null) {
+                //if the fragment exists, show it.
+                fragmentManager.beginTransaction().show(fragmentManager.findFragmentByTag("two")).commit();
+            } else {
+                //if the fragment does not exist, add it to fragment manager.
+                fragmentManager.beginTransaction().add(R.id.content_frame, cataFragment, "two").commit();
+            }
+            if(fragmentManager.findFragmentByTag("one") != null){
+                //if the other fragment is visible, hide it.
+                fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag("one")).commit();
+            }
+        }
+
 ;
-        // update selected item and title, then close the drawer
-        mDrawerList.setItemChecked(one, true);
 
-        setTitle(mPlanetTitles[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
@@ -261,47 +279,4 @@ private MenuListAdapter adapter;
     }
 
 
-
-
-    @SuppressLint("ValidFragment")
-    public class PlanetFragment extends Fragment {
-        public static final String ARG_PLANET_NUMBER = "planet_number";
-
-
-        private PagerSlidingTabStrip tabs;
-        private ViewPager pager;
-        private MypagerAdapter adapter;
-
-        private android.support.v4.app.FragmentManager fm;
-
-        public PlanetFragment() {
-
-            // Empty constructor required for fragment subclasses
-        }
-
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.home, container, false);
-
-
-            tabs = (PagerSlidingTabStrip) rootView.findViewById(R.id.tabs);
-            pager = (ViewPager) rootView.findViewById(R.id.pager);
-            adapter = new MypagerAdapter(MainActivity.this.getSupportFragmentManager());
-
-            pager.setAdapter(adapter);
-
-            final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
-                    .getDisplayMetrics());
-            pager.setPageMargin(pageMargin);
-
-            tabs.setViewPager(pager);
-            // changeColor(currentColor);
-
-
-            getActivity().setTitle("旅・日本");
-            return rootView;
-        }
-    }
-    }
+}
