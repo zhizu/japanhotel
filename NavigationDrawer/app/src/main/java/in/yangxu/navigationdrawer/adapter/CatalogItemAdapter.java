@@ -2,11 +2,16 @@ package in.yangxu.navigationdrawer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.List;
@@ -48,14 +53,36 @@ public class CatalogItemAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View rowView = rowViews.get(position);
-        if (rowView == null) {
+//        View rowView = rowViews.get(position);
+//        if (rowView == null) {
+        CatalogItem item = info.get(position);
+
             LayoutInflater layoutInflater = LayoutInflater.from(context);
-            rowView = layoutInflater.inflate(R.layout.catalogitemlayout, null);
+            convertView = layoutInflater.inflate(R.layout.catalogitemlayout, null);
 
-            rowViews.put(position, rowView);
-
+            TextView text = (TextView)convertView.findViewById(R.id.text);
+        ImageView image = (ImageView)convertView.findViewById(R.id.image);
+        if(item.getTitle().equals("東　京")){
+            text.getBackground().setAlpha(130);
+            text.setText("東　京");
+            image.setBackground(context.getResources().getDrawable(R.drawable.cata01));
+        }else if(item.getTitle().equals("北海道")){
+            text.getBackground().setAlpha(130);
+            text.setText("北海道");
+            image.setBackground(context.getResources().getDrawable(R.drawable.cata02));
+        }else if(item.getTitle().equals("京都・大阪")){
+            text.getBackground().setAlpha(130);
+            text.setText("京都・大阪");
+            image.setBackground(context.getResources().getDrawable(R.drawable.cata04));
+        }else if(item.getTitle().equals("名古屋")){
+            text.getBackground().setAlpha(130);
+            text.setText("名古屋");
+            image.setBackground(context.getResources().getDrawable(R.drawable.cata08));
         }
-        return rowView;
+
+//            rowViews.put(position, rowView);
+
+//        }
+        return convertView;
     }
 }

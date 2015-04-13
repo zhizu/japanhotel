@@ -36,6 +36,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 import in.yangxu.navigationdrawer.adapter.MenuListAdapter;
 import in.yangxu.navigationdrawer.modal.ListViewMenuItem;
@@ -198,6 +199,9 @@ private MenuListAdapter adapter;
             if(position!=1 && position!=2){
                 mDrawerList.setItemChecked(one, true);
 
+                if(position==3){
+
+                }
             }else{
                 info.get(position).setFlag(true);
                 selectItem(position);

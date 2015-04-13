@@ -44,6 +44,11 @@ this.context = context;
         CatalogItem item2 = new CatalogItem();
         CatalogItem item3 = new CatalogItem();
 
+        item0.setTitle("東　京");
+        item1.setTitle("北海道");
+        item2.setTitle("京都・大阪");
+        item3.setTitle("名古屋");
+
 
         lists.add(item0);
         lists.add(item1);
