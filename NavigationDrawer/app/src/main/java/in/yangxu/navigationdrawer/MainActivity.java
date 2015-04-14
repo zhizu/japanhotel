@@ -200,14 +200,17 @@ private MenuListAdapter adapter;
                 mDrawerList.setItemChecked(one, true);
 
                 if(position==3){
-
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this,SearchActivity.class);
+                    MainActivity.this.startActivity(intent);
                 }
             }else{
                 info.get(position).setFlag(true);
+                mDrawerList.setItemChecked(position,true);
                 selectItem(position);
                 info.get(one).setFlag(false);
                 one = position;
-                mDrawerList.setItemChecked(position,true);
+
             }
 
 
@@ -222,7 +225,7 @@ private MenuListAdapter adapter;
     private void selectItem(int position) {
         // update the main content by replacing fragments
 
-
+        mDrawerLayout.closeDrawer(mDrawerList);
 
 
         if(position == 1){
@@ -254,7 +257,7 @@ private MenuListAdapter adapter;
 
 ;
 
-        mDrawerLayout.closeDrawer(mDrawerList);
+
     }
 
     @Override
