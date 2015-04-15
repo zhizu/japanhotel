@@ -203,6 +203,10 @@ private MenuListAdapter adapter;
                     Intent intent = new Intent();
                     intent.setClass(MainActivity.this,SearchActivity.class);
                     MainActivity.this.startActivity(intent);
+                }else if(position==5){
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this,SettingActivity.class);
+                    MainActivity.this.startActivity(intent);
                 }
             }else{
                 info.get(position).setFlag(true);

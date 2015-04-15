@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import in.yangxu.navigationdrawer.SuperAwesomeCardFragment;
+import in.yangxu.navigationdrawer.view.SuperAwesomeCardFragment;
 
 /**
  * Created by yangxu on 2015/04/06.

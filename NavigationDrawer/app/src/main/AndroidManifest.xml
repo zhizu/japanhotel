@@ -26,6 +26,11 @@
             android:label="@string/app_name" >
 
         </activity>
+        <activity
+            android:name=".SettingActivity"
+            android:label="设置" >
+
+        </activity>
     </application>
 
 </manifest>

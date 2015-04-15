@@ -14,26 +14,22 @@
  * limitations under the License.
  */
 
-package in.yangxu.navigationdrawer;
+package in.yangxu.navigationdrawer.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.FrameLayout;
-import android.widget.FrameLayout.LayoutParams;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import in.yangxu.navigationdrawer.R;
 import in.yangxu.navigationdrawer.adapter.ItemAdapter;
 import in.yangxu.navigationdrawer.modal.Item;
 
