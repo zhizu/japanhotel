@@ -203,6 +203,10 @@ private MenuListAdapter adapter;
                     Intent intent = new Intent();
                     intent.setClass(MainActivity.this,SearchActivity.class);
                     MainActivity.this.startActivity(intent);
+                }else if(position==4){
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this,ToukouActivity.class);
+                    MainActivity.this.startActivity(intent);
                 }else if(position==5){
                     Intent intent = new Intent();
                     intent.setClass(MainActivity.this,SettingActivity.class);

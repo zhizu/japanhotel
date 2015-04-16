@@ -25,6 +25,7 @@
         <item>设置</item>
 
     </string-array>
+    <string name="tougao">如果您知道更多的关于日本民宿的故事，以及愿意分享给其他人，欢迎将稿件发至我们邮箱。yang.asahi@gmail.com</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>
